@@ -78,8 +78,13 @@ class MasterMind(object):
                     print(f"The input must have a length of {self.code_len} characters!")
                     continue
                 else:
-                    break
-            # l = self.gen_result(inp, code, config["pd"])
+                    invalid_colors = [color for color in inp if color not in self.colors]
+                    if invalid_colors:
+                        print(f"These colors are not defined: {', '.join(invalid_colors)}")
+                        continue
+                    else:
+                        break
+            
             result = "".join(self.gen_result(inp, code, config["pd"]))
                 
             if config["pd"]:
